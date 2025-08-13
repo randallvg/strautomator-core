@@ -1,6 +1,6 @@
 {
     "name": "strautomator-core",
-    "version": "25.324.11233",
+    "version": "25.331.11226",
     "description": "Strautomator.com core engine",
     "author": "Igor Ramadas",
     "main": "lib/index.js",
@@ -8,7 +8,7 @@
     "license": "AGPL-3.0-only",
     "repository": {
         "type": "git",
-        "url": "https://github.com/strautomator/core.git"
+        "url": "https://github.com/randallvg/strautomator-core.git"
     },
     "scripts": {
         "prepare": "tsc"
@@ -32,6 +32,7 @@
         "jaul": "^1.7.1",
         "jszip": "^3.10.1",
         "lodash": "^4.17.21",
+        "mocha": "^11.7.1",
         "nodemailer": "^7.0.5",
         "paypal-rest-sdk": "^1.8.1",
         "setmeup": "^1.9.5",

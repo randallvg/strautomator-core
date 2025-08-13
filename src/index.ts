@@ -228,6 +228,7 @@ export const startup = async (quickStart?: boolean) => {
             if (modSettings?.disabled) {
                 logger.warn("Strautomator.startup", module.constructor.name, "Skip, module is disabled on settings")
             } else {
+                logger.info("Strautomator.startup", module.constructor.name, "Module init")
                 if (quickStart) {
                     module.init(quickStart)
                 } else {
@@ -235,7 +236,7 @@ export const startup = async (quickStart?: boolean) => {
                 }
             }
         } catch (ex) {
-            logger.error("Strautomator.startup", "Failed to start a core module, will exit...")
+            logger.error("Strautomator.startup", module.constructor.name, ex, "Failed to start a core module, will exit...")
             return process.exit(1)
         }
     }

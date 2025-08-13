@@ -23,18 +23,18 @@
     },
     "app": {
         // Application title.
-        "title": "Strautomator",
+        "title": "AutoStrive",
         // The server will look for the files strautomator.cert and strautomator.key on the
         // app root to start a HTTPS server on port 8443. If these files are not there,
         // the server will listen on HTTP port 8080 instead.
         "port": null,
         // You can set the app URL on your settings.secret.json file or
         // via the $SMU_app_url environment variable.
-        "url": "https://strautomator.com/",
+        "url": "https://autostrive.nl/",
         // Listen to all incoming connections by default.
         "ip": "0.0.0.0",
         // Hashtag used on social media.
-        "hashtag": "#strautomator.com",
+        "hashtag": "#autostrive.nl",
         // Express trust proxy settings.
         "trustProxy": 2,
         // URL redirections.
@@ -57,13 +57,14 @@
             "message": "Too many request, please try again later"
         },
         // Only accept connections coming via Cloudflare by default.
-        "requireCloudflare": true
+        "requireCloudflare": false
     },
     // Afiliate settings (also used for the Country Linkify module).
     "affiliates": {
+        "disabled": true,
         "app": {
-            "homeUrl": "https://strautomator.com/billing/affiliates",
-            "title": "Strautomator"
+            "homeUrl": "https://autostrive.com/billing/affiliates",
+            "title": "AutoStrive"
         },
         "country": {
             "cacheDuration": 900,
@@ -77,7 +78,7 @@
         },
         "server": {
             "basePath": "/affiliates/",
-            "url": "https://links.strautomator.com/"
+            "url": "https://links.autostrive.com/"
         }
     },
     "announcements": {
@@ -86,6 +87,7 @@
     },
     // Anthropic API options.
     "anthropic": {
+        "disabled": true,
         "api": {
             "version": "2023-06-01",
             "baseUrl": "https://api.anthropic.com/v1/",
@@ -96,6 +98,7 @@
         }
     },
     "axios": {
+        "disabled": true,
         // User agent used to emulate a browser.
         "uaBrowser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36",
         // Start throttling requests if we reach over 90% of the extracted quota. Value in percent (0 to 100).
@@ -110,6 +113,7 @@
     },
     // AWIN affiliates.
     "awin": {
+        "disabled": true,
         "cacheDuration": 300,
         "api": {
             "baseUrl": "https://api.awin.com/"
@@ -181,6 +185,7 @@
         "batchSize": 8
     },
     "garmin": {
+        "disabled": true,
         "api": {
             "baseUrl": "https://apis.garmin.com/",
             "authUrl": "https://connectapi.garmin.com/oauth-service/oauth/",
@@ -217,6 +222,7 @@
         }
     },
     "gdpr": {
+        "disabled": true,
         // Users can request an archive download once every 10 days.
         "requestDays": 10
     },
@@ -246,18 +252,20 @@
         }
     },
     "genius": {
+        "disabled": true,
         "api": {
             "baseUrl": "https://api.genius.com/"
         },
         "url": "https://genius.com/"
     },
     "github": {
+        "disabled": true,
         "api": {
             "baseUrl": "https://api.github.com/",
-            "repo": "strautomator/web",
-            "coreRepo": "strautomator/core",
-            "contactRepo": "strautomator/contact",
-            "username": "igoramadas"
+            "repo": "randallvg/strautomator-web",
+            "coreRepo": "randallvg/strautomator-core",
+            "contactRepo": "randallvg/strautomator-contact",
+            "username": "randallvg"
         }
     },
     "komoot": {
@@ -283,10 +291,10 @@
     },
     "mailer": {
         // Default contact email.
-        "contact": "info@strautomator.com",
+        "contact": "info@autostrive.nl",
         // The default "from" on sent emails should be set on settings.secret.json file
         // or via the SMU_mailer_from environment variable.
-        "from": "noreply@strautomator.com",
+        "from": "noreply@autostrive.nl",
         // Optional BCC address to be added to all sent emails.
         "bcc": null,
         // Default SMTP settings are valid for Amazon SES. You can overwrite these on
@@ -340,6 +348,7 @@
     },
     // Mistral AI.
     "mistral": {
+        "disabled": true,
         "api": {
             "baseUrl": "https://api.mistral.ai/v1/",
             // Maximum concurrent requests per instance.
@@ -380,7 +389,11 @@
             "maxPerMinute": 120
         }
     },
+    "paddlewrapper": {
+        "disabled": true
+    },
     "paddle": {
+        "disabled": true,
         "api": {
             "environment": "production",
             // Default page size is the max of 200.
@@ -395,9 +408,10 @@
         "priceId": null,
         "webhookId": null,
         // If you wish to accept Paddle webhook events from any IP, set the ips to null.
-        "ips": ["34.232.58.13", "34.195.105.136", "34.237.3.244", "35.155.119.135", "52.11.166.252", "34.212.5.7"]
+        "ips": ["34.232.58.13", "34.195.105.136", "34.237.3.244", "35.155.119.135", "52.11.166.252", "34.212.5.7","77.171.198.11"]
     },
     "paypal": {
+        "disabled": true,
         "api": {
             "mode": "live",
             "baseUrl": "https://api.paypal.com/",
@@ -433,35 +447,35 @@
             // Accept payments in USD, EUR and GBP.
             "currency": ["CHF", "EUR", "USD", "GBP"],
             // Names and descriptions used on PayPal billing plans.
-            "name": "Strautomator Pro subscription",
-            "productName": "Strautomator Pro account",
-            "description": "Subscription to get a PRO account on Strautomator.",
+            "name": "AutoStrive Pro subscription",
+            "productName": "AutoStrive Pro account",
+            "description": "Subscription to get a PRO account on AutoStrive.",
             // Subscription agreements are set to start 5 minutes after they are approved.
             "startMinutes": 5
         }
     },
     "plans": {
         "free": {
-            "apiConcurrency": 4,
-            // Free accounts are limited to 3 recipes and 2 gearwear configuration.
-            "maxRecipes": 3,
-            "maxGearWear": 2,
-            "maxClubs": 5,
-            // Free accounts can trigger batch automations for activities up to 30 days old.
-            "batchDays": 30,
-            // Free accounts limited to 6 months in the past and up to 5 days in the future.
-            "pastCalendarDays": 180,
-            "futureCalendarDays": 5,
-            // Free calendars are cached for around 12 hours.
-            "calendarCacheDuration": 43200,
-            // Links on 100% of processed activities on free accounts by default.
-            "linksOn": 1,
-            // Track personal records for which sports?
-            "recordSports": ["Ride", "VirtualRide", "Run", "VirtualRun"],
-            // Use AI and weather parameters on 20% of "AI generate" recipe actions.
+            "apiConcurrency": 6,
+            // PRO accounts are limited to 999 (virtually unlimited) recipes and gearwear configs.
+            "maxRecipes": 999,
+            "maxGearWear": 999,
+            "maxClubs": 30,
+            // PRO accounts can trigger batch automations for activities up to 5 years old.
+            "batchDays": 1825,
+            // PRO accounts limited to 10 years in the past and up to 1 year in the future.
+            "pastCalendarDays": 3650,
+            "futureCalendarDays": 365,
+            // PRO calendars are cached for around 3 hours.
+            "calendarCacheDuration": 10800,
+            // No links (0%) on PRO accounts processed activities by default.
+            "linksOn": 0,
+            // Allow personal records for all sports.
+            "recordSports": true,
+            // Use AI and weather parameters on 99% "AI generate" recipe actions.
             "generatedContent": {
-                "ai": 20,
-                "weather": 20
+                "ai": 99,
+                "weather": 99
             }
         },
         "pro": {
@@ -493,7 +507,7 @@
         "linkTexts": {
             "default": "Automated with",
             "aiContent": "Powered with AI by",
-            "url": "strautomator.com"
+            "url": "autostrive.nl"
         },
         // How many times a recipe can fail before getting disabled automatically.
         "maxFailures": 10,
@@ -521,6 +535,7 @@
     // Spotify integration. The "clientId" and "clientSecret" must be set via secret settings
     // or via the SMU_spotify_api_clientId and SMU_spotify_api_clientSecret environment variables.
     "spotify": {
+        "disabled": true,
         "api": {
             "baseUrl": "https://api.spotify.com/v1/",
             "authUrl": "https://accounts.spotify.com/authorize",
@@ -539,6 +554,7 @@
     // STANDS4 APIs. The "uid" and "tokenId" must be set via secret settings or via the
     // SMU_stands4_api_uid and SMU_stands4_api_tokenId environment variables.
     "stands4": {
+        "disabled": true,
         "api": {
             "baseUrl": "https://www.stands4.com/services/v2/lyrics.php"
         }
@@ -547,10 +563,10 @@
     // please add a "location" parameter. Otherwise the default will be taken from "gcp.location".
     "storage": {
         "buckets": {
-            "ai": {"name": "strautomator-ai", "ttlDays": 90},
-            "cache": {"name": "strautomator-cache", "ttlDays": 30},
-            "calendar": {"name": "bucket-calendar.strautomator.com", "ttlDays": 7},
-            "gdpr": {"name": "bucket-gdpr.strautomator.com", "ttlDays": 2}
+            "ai": {"name": "autostrive-ai", "ttlDays": 90},
+            "cache": {"name": "autostrive-cache", "ttlDays": 30},
+            "calendar": {"name": "autostrive-calendar", "ttlDays": 7},
+            "gdpr": {"name": "autostrive-gdpr", "ttlDays": 2}
         },
         // Storage buckets are configured as CNAME in production.
         "cname": true
@@ -618,7 +634,7 @@
         },
         "processedActivities": {
             // Activities containing this hashtag on their names will be ignored by Strautomator.
-            "ignoreHashtag": "#strautomator-ignore",
+            "ignoreHashtag": "#autostrive-ignore",
             // Processed activity details will be deleted from the database after 2 years. Value set in days.
             "maxAgeDays": 730
         },
@@ -654,6 +670,7 @@
     },
     // xAI API options.
     "xai": {
+        "disabled": true,
         "api": {
             "baseUrl": "https://api.x.ai/v1/",
             // Maximum concurrent requests per instance.
@@ -663,6 +680,7 @@
         }
     },
     "wahoo": {
+        "disabled": true,
         "api": {
             "baseUrl": "https://api.wahooligan.com/",
             "scopes": "email user_read workouts_read offline_data",
@@ -764,6 +782,9 @@
             // via the SMU_weather_weatherapi_secret environment variable.
             "secret": null
         }
+    },
+    "subscriptions": {
+        "disabled": true
     },
     "webhooks": {
         // Retry the webhooks setup every 30 seconds (if failed). Value in milliseconds.

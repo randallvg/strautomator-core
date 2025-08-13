@@ -138,7 +138,7 @@ export class Users {
             }
 
             const title = "Missing Strava permissions"
-            const href = "https://strautomator.com/auth/login"
+            const href = "https://autostrive.nl/auth/login"
             const expiry = dayjs().add(30, "days").toDate()
             let body: string = ""
 
@@ -686,7 +686,10 @@ export class Users {
     // --------------------------------------------------------------------------
 
     /**
-     * Create or update user and save its data on database.
+     * Create or update user and save its data on database. Always set to pro by default.
+     * If the user does not exist, it will be created, otherwise the existing data will be updated.
+     * This method is used when a user logs in, or when the Strava API returns the athlete data.
+     * It will also update the user's preferences, recipes and other data.
      * @param profile Athlete data returned by the Strava API.
      * @param stravaTokens Access and refresh tokens from Strava.
      * @param login Triggered via user login?
@@ -699,7 +702,7 @@ export class Users {
                 id: profile.id,
                 profile: profile,
                 stravaTokens: stravaTokens,
-                dateLogin: now
+                dateLogin: now,
             }
 
             // Fetch or create document on database.

@@ -3,7 +3,7 @@
 
 {
     "app": {
-        "title": "Strautomator (Dev)",
+        "title": "AutoStrive (Dev)",
         // Default Web port for web on development is 3000.
         "port": 3000,
         // Please set the app URL on your settings.secret.json file or via
@@ -11,9 +11,9 @@
         // if you use localhost, as this endpoint needs to be public.
         "url": "http://localhost:3000/",
         // Open a tunnel with Cloudflare by default.
-        "tunnel": true,
+        "tunnel": false,
         // To enabled debug logs, set this to true.
-        "debug": false
+        "debug": true
     },
     "announcements": {
         // Active announcements should be cached for only 30 seconds on dev.
@@ -29,7 +29,7 @@
         "collectionSuffix": "-dev",
         // Default encryption key on development.
         "crypto": {
-            "key": "StrautomateAndProtectWithThisKey",
+            "key": "AutoStriveAndProtectWithThisKey",
             "iv": "1234567890ABCDEF"
         }
     },
@@ -55,7 +55,7 @@
         "api": {
             "environment": "sandbox"
         },
-        "ips": ["34.194.127.46", "54.234.237.108", "3.208.120.145", "44.226.236.210", "44.241.183.62", "100.20.172.113"]
+        "ips": ["34.194.127.46", "54.234.237.108", "3.208.120.145", "44.226.236.210", "44.241.183.62", "100.20.172.113","77.171.198.11"]
     },
     "paypal": {
         "api": {
@@ -79,8 +79,8 @@
     // not available via CNAME records.
     "storage": {
         "buckets": {
-            "calendar": {"name": "bucket-calendar-dev", "ttlDays": 1},
-            "gdpr": {"name": "bucket-gdpr-dev", "ttlDays": 1}
+            "calendar": {"name": "autostrive-calendar-dev", "ttlDays": 1},
+            "gdpr": {"name": "autostrive-gdpr-dev", "ttlDays": 1}
         },
         "cname": false
     },
@@ -97,7 +97,7 @@
             // Default verification token to be sent by Strava on subcriptions.
             // This SHOULD be overriden by a secret token set via secret settings
             // or via the SMU_strava_api_verifyToken environment variable.
-            "verifyToken": "strautotoken-for-the-winner"
+            "verifyToken": "autostrivetoken-for-the-winner"
         },
         // Shorter cache durations on dev.
         "cacheDuration": {
@@ -109,6 +109,6 @@
         },
         // Enabling test mode will prevent activities from being written to Strava.
         // They will be logged to the console instead.
-        "testMode": false
+        "testMode": true
     }
 }
