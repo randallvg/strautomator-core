@@ -98,7 +98,6 @@
         }
     },
     "axios": {
-        "disabled": true,
         // User agent used to emulate a browser.
         "uaBrowser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36",
         // Start throttling requests if we reach over 90% of the extracted quota. Value in percent (0 to 100).
