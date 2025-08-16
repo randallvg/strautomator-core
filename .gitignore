@@ -10,3 +10,4 @@ test/
 settings.secret.json
 settings.test.json
 *.log
+settings.env

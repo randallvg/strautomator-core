@@ -565,8 +565,8 @@
         "buckets": {
             "ai": {"name": "autostrive-ai", "ttlDays": 90},
             "cache": {"name": "autostrive-cache", "ttlDays": 30},
-            "calendar": {"name": "autostrive-calendar", "ttlDays": 7},
-            "gdpr": {"name": "autostrive-gdpr", "ttlDays": 2}
+            "calendar": {"name": "bucket-calendar.autostrive.nl", "ttlDays": 7},
+            "gdpr": {"name": "bucket-gdpr.autostrive.nl", "ttlDays": 2}
         },
         // Storage buckets are configured as CNAME in production.
         "cname": true
