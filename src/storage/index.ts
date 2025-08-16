@@ -55,6 +55,8 @@ export class Storage {
 
             for ([key, config] of Object.entries(settings.storage.buckets)) {
                 if (!config || !config.name) continue
+ 
+                logger.info("Storage.init", `Init for bucket: ${config.name}`)
 
                 if (!quickStart) {
                     const bucket = this.client.bucket(config.name)
