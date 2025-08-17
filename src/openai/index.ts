@@ -76,7 +76,7 @@ export class OpenAI implements AiProvider {
                 method: "POST",
                 headers: this.baseHeaders,
                 data: {
-                    model: user.isPro && options.useReason ? "o3-mini" : "gpt-4o-mini",
+                    model: user.isPro && options.useReason ? "o3-mini" : "gpt-5-mini",
                     max_tokens: options.maxTokens,
                     messages: [
                         {role: "system", content: options.instruction},
@@ -85,7 +85,7 @@ export class OpenAI implements AiProvider {
                 },
                 onRetry: (opt) => {
                     if (user.isPro) {
-                        opt.data.model = "gpt-4o-mini"
+                        opt.data.model = "gpt-5-mini"
                         return true
                     }
                     return false
