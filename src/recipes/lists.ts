@@ -146,7 +146,7 @@ export const recipeActionList = [
     {value: "prependName", text: "Prepend to activity name"},
     {value: "appendName", text: "Append to activity name"},
     {value: "generateName", text: "Generate the activity name with AI"},
-    {value: "generateDescription", text: "Generate a poem with AI", isPro: true},
+    {value: "generateDescription", text: "Generate a description with AI", isPro: true},
     {value: "description", text: "Set activity description"},
     {value: "prependDescription", text: "Prepend to activity description"},
     {value: "appendDescription", text: "Append to activity description"},

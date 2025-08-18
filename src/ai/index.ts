@@ -122,7 +122,8 @@ export class AI {
     generateActivityDescription = async (user: UserData, options: AiGenerateOptions): Promise<AiGeneratedResponse> => {
         try {
             options.maxTokens = settings.ai.maxTokens.description
-            options.instruction = "You are an assistant to create poems to describe Strava activities."
+//            options.instruction = "You are an assistant to create poems to describe Strava activities."
+            options.instruction = "You are an assistant to create engaging descriptions to describe Strava activities."
 
             // Check if a generated description is cached.
             const cacheId = `description-${this.getCacheId(options)}`
@@ -134,9 +135,11 @@ export class AI {
 
             // Get the activity prompt.
             const sportType = options.activity.sportType.replace(/([A-Z])/g, " $1").trim()
-            const messages = [`Please write a very short poem for my Strava ${options.activity.commute ? "commute" : sportType.toLowerCase()}.`]
+//            const messages = [`Please write a very short poem for my Strava ${options.activity.commute ? "commute" : sportType.toLowerCase()}.`]
+            const messages = [`Please write a short description for my Strava ${options.activity.commute ? "commute" : sportType.toLowerCase()}.`]
             messages.push(...this.getActivityPrompt(user, options))
-            messages.push("Answer the generated poem only, with no additional text, limited to a maximum of 10 lines.")
+//            messages.push("Answer the generated poem only, with no additional text, limited to a maximum of 10 lines.")
+            messages.push("Answer the generated description only, with no additional text, limited to a maximum of 10 lines.")
             messages.push(...this.getHumourAndTranslation(user, options))
 
             // Generate and cache the result.
