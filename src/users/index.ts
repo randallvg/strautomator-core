@@ -703,6 +703,7 @@ export class Users {
                 profile: profile,
                 stravaTokens: stravaTokens,
                 dateLogin: now,
+                isPro: true,
             }
 
             // Fetch or create document on database.
