@@ -479,7 +479,7 @@ export class AI {
         // Translate to the user's language (if other than English).
         if (user.preferences.language && user.preferences.language != "en") {
             const languageName = translation("LanguageName", user.preferences)
-            messages.push(`The answer should be translated to ${languageName}.`)
+            messages.push(`Please answer only in ${languageName}.`)
         }
 
         return messages
