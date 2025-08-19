@@ -11,8 +11,16 @@
         // Max tokens per generation.
         "maxTokens": {
             "name": 55,
-            "description": 230,
+            "description": 1000,
             "insights": 8100,
+            // If max tokens were not enough, try again with a 20% higher limit.
+            "multiplier": 1.2
+        },
+        // Max completion tokens per generation, higher values needed for GPT-5.
+        "maxCompletionTokens": {
+            "name": 2000,
+            "description": 10000,
+            "insights": 15000,
             // If max tokens were not enough, try again with a 20% higher limit.
             "multiplier": 1.2
         },

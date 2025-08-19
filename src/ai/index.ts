@@ -4,11 +4,11 @@ import {AiGenerateOptions, AiGeneratedResponse, AiProvider} from "./types"
 import {calculatePowerIntervals, getCadenceString} from "../strava/utils"
 import {UserData} from "../users/types"
 import {translation} from "../translations"
-import anthropic from "../anthropic"
-import gemini from "../gemini"
-import mistral from "../mistral"
+//import anthropic from "../anthropic"
+//import gemini from "../gemini"
+//import mistral from "../mistral"
 import openai from "../openai"
-import xai from "../xai"
+//import xai from "../xai"
 import database from "../database"
 import _ from "lodash"
 import cache from "bitecache"
@@ -16,7 +16,8 @@ import logger from "anyhow"
 import dayjs from "../dayjs"
 import * as logHelper from "../loghelper"
 const settings = require("setmeup").settings
-const allProviders = [anthropic, xai, openai, mistral, gemini]
+//const allProviders = [anthropic, xai, openai, mistral, gemini]
+const allProviders = [openai] // Only OpenAI for now, to avoid rate limits and issues with other providers.
 
 /**
  * AI / LLM wrapper.
@@ -96,7 +97,8 @@ export class AI {
             const messages = [`Please generate a single name for my Strava ${options.activity.commute ? "commute" : sportType.toLowerCase()}. The activity started at ${aDate.format("HH:MM")}.`]
             messages.push(...this.getActivityPrompt(user, options))
             messages.push("Answer the generated name only, with no additional text or Markdown formatting.")
-            messages.push(...this.getHumourAndTranslation(user, options))
+            messages.push(...this.getHumour(options))
+            messages.push(...this.getTranslation(user))
 
             // Generate and cache the result.
             const result = await this.prompt(user, options, messages)
@@ -140,7 +142,8 @@ export class AI {
             messages.push(...this.getActivityPrompt(user, options))
 //            messages.push("Answer the generated poem only, with no additional text, limited to a maximum of 10 lines.")
             messages.push("Answer the generated description only, with no additional text, limited to a maximum of 10 lines.")
-            messages.push(...this.getHumourAndTranslation(user, options))
+            messages.push(...this.getHumour(options))
+            messages.push(...this.getTranslation(user))
 
             // Generate and cache the result.
             const result = await this.prompt(user, options, messages)
@@ -231,7 +234,7 @@ export class AI {
 
             const athleteLevel = !user.fitnessLevel || user.fitnessLevel <= 2 ? "a beginner" : user.fitnessLevel <= 4 ? "an average" : "a pro"
             messages.push(`If my performance has been consistently getting worse, please verify if it could be due to sickness or overtraining at the current season, also considering that I'm ${athleteLevel} athlete.`)
-            messages.push(...this.getHumourAndTranslation(user, options))
+            messages.push(...this.getTranslation(user))
 
             // Generate and cache the result.
             const result = await this.prompt(user, options, messages)
@@ -348,7 +351,8 @@ export class AI {
                         const activityPerformance = calculatePowerIntervals(options.activityStreams.watts.data)
                         messages.push(`My best 5 minutes power was ${activityPerformance.power5min} watts.`)
                     }
-                    if (user.profile.ftp) {
+                    // Only add FTP for rides and if available. 
+                    if (user.profile.ftp && activity.sportType.includes("Ride")) {
                         messages.push(`My current FTP is ${user.profile.ftp} watts.`)
                     }
                 }
@@ -442,11 +446,11 @@ export class AI {
     }
 
     /**
-     * Get final messages to set the humour / custom prompt and translation.
+     * Get final messages to set the humour / custom prompt.
      * @param user The user.
      * @param options AI generation options.
      */
-    private getHumourAndTranslation = (user: UserData, options: AiGenerateOptions): string[] => {
+    private getHumour = (options: AiGenerateOptions): string[] => {
         const messages = []
 
         // If a custom prompt was set, do not use predefined humours or translations.
@@ -461,6 +465,17 @@ export class AI {
             messages.push(`Please be very ${humourPrompt} with the choice of words.`)
         }
 
+        return messages
+    }
+
+    /**
+     * Get final messages to set the translation.
+     * @param user The user.
+     * @param options AI generation options.
+     */
+    private getTranslation = (user: UserData): string[] => {
+        const messages = []
+
         // Translate to the user's language (if other than English).
         if (user.preferences.language && user.preferences.language != "en") {
             const languageName = translation("LanguageName", user.preferences)
@@ -469,6 +484,7 @@ export class AI {
 
         return messages
     }
+
 }
 
 // Exports...

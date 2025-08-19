@@ -72,6 +72,8 @@ export interface AiGenerateOptions {
     useReason?: boolean
     /** Max tokens to be used. */
     maxTokens?: number
+    /** Max completion tokens to be used. */
+    maxCompletionTokens?: number
     /** Humour (or custom prompt) to be used. */
     humourPrompt?: string
     /** Style of the generated content. */
