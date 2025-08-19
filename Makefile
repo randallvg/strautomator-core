@@ -40,6 +40,12 @@ test:
 	$(TSC)
 	@NODE_ENV=test $(MOCHA) --trace-warnings --exit -u tdd -R spec
 
+# Deploy to GIT (by creating a new tag)
+deploy-git:
+	npm version $(shell date '+%y.%-V%u.1%H%M') --force --allow-same-version
+	git push
+	git push --tags
+
 # Encrypt settings.
 encrypt:
 	$(SETMEUP) encrypt ./settings.secret.json
