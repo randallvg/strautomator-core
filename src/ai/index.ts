@@ -170,14 +170,27 @@ export class AI {
         try {
             options.useReason = true
             options.maxTokens = settings.ai.maxTokens.insights
-            options.instruction = [
-                "You are a sports coach that analyzes cycling and running workouts, and give short, to-the-point suggestions to improve performance.",
-                "If weather data is provided, consider that temperature and wind can affect the speed and power output.",
-                `You can give very technical answers.`
-            ].join("")
 
             // At the moment this is enabled for moving activities with at least HR or power data.
             const activity = options.activity
+
+            if (activity.sportType.includes("Ride")) {
+                options.instruction = [
+                    "You are a sports coach that analyzes cycling workouts, and give short, to-the-point suggestions to improve performance. ",
+                    "If weather data is provided, consider that temperature and wind can affect the speed and power output. ",
+                    "You can give very technical answers. ",
+                    "Use a positive and encouraging tone. "
+                ].join("")
+            }
+            else {
+                options.instruction = [
+                    "You are a sports coach that analyzes running workouts, and give short, to-the-point suggestions to improve performance.",
+                    "If weather data is provided, consider that temperature and wind can affect the speed and power output.",
+                    "You can give very technical answers. ",
+                    "Use a positive and encouraging tone. "
+                ].join("")
+            }
+
             if (!activity || !activity.sportType || !activity.distance || !activity.movingTime || (!activity.wattsAvg && !activity.hrAvg)) {
                 logger.warn("AI.generateActivityInsights", logHelper.user(user), logHelper.activity(options.activity), "Activity does not have power or HR data, won't generate insights")
                 return null
