@@ -380,8 +380,13 @@ export class AI {
             }
 
             // Add max speed in case it was high enough.
-            if (activity.speedMax > 0 && (options.fullDetails || activity.speedMax > 65 || (activity.speedMax > 40 && user.profile.units == "imperial"))) {
-                messages.push(`Maximum speed was ${activity.speedMax}${activity.speedUnit}.`)
+            // if (activity.speedMax > 0 && (options.fullDetails || activity.speedMax > 65 || (activity.speedMax > 40 && user.profile.units == "imperial"))) {
+            //     messages.push(`Maximum speed was ${activity.speedMax}${activity.speedUnit}.`)
+            // }
+
+            // Add avg speed 
+            if (activity.speedAvg > 0 && options.fullDetails) {
+                messages.push(`Average speed was ${activity.speedAvg}${activity.speedUnit}.`)
             }
 
             // Add cadence data if available, only if full details are requested.
