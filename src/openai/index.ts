@@ -76,9 +76,6 @@ export class OpenAI implements AiProvider {
                 method: "POST",
                 headers: this.baseHeaders,
                 data: {
-                    model: user.isPro && options.useReason ? "gpt-5" : "gpt-4o-mini",
-                    max_tokens: options.maxTokens,
-                    max_completion_tokens: options.maxCompletionTokens,
                     messages: [
                         {role: "system", content: options.instruction},
                         {role: "user", content: messages.join(" ")}
@@ -91,6 +88,14 @@ export class OpenAI implements AiProvider {
                     }
                     return false
                 }
+            }
+
+            if (user.isPro && options.useReason) {
+                reqOptions.data.model = "gpt-5"
+                reqOptions.data.max_completion_tokens= options.maxCompletionTokens
+            } else {
+                reqOptions.data.model = "gpt-4o-mini"
+                reqOptions.data.max_tokens= options.maxTokens
             }
 
             // Here we go!
